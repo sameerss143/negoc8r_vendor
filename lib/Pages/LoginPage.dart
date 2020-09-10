@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
           new RaisedButton(
             key: null,
             onPressed: () {
-              Navigator.pushNamed(context, '/myhomepage');
+              Navigator.pushNamed(context, '/googlesignin');
             },
             color: Colors.grey,
             child: new Text(
