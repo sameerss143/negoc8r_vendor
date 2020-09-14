@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:negoc8r_vendor/MyWidgets/AppDrawer.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
@@ -11,26 +12,91 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Home Page'),
+        title: new Text('NegoC8r Vendor App'),
       ),
-      body: new SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        padding: const EdgeInsets.all(10.0),
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            new Icon(Icons.panorama, color: Colors.blue[200], size: 100.0),
-            new Icon(Icons.panorama, color: Colors.blue[200], size: 100.0),
-            RaisedButton.icon(
-              onPressed: () {
-                Navigator.pushNamed(context, '/myorderpage');
-              },
-              icon: Icon(Icons.attach_file),
-              label: Text('My Orders'),
+      drawer: AppDrawer(),
+      //add app drawer
+      //drawer: build(context),
+      body: new GridView.count(
+        padding: EdgeInsets.all(10.0),
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.0,
+        mainAxisSpacing: 10.0,
+        children: <Widget>[
+          new InkWell(
+            onTap: () => Navigator.pushNamed(context, '/myorderpage'),
+            child: new Container(
+              decoration: new BoxDecoration(
+                color: Colors.blue[400],
+                borderRadius: BorderRadius.all(new Radius.circular(10.0)),
+              ),
+              alignment: Alignment(0, 0),
+              child: Text(
+                'My Orders',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                ),
+              ),
+              //color: Colors.blue[400],
             ),
-          ],
-        ),
+          ),
+          new InkWell(
+            onTap: () => Navigator.pushNamed(context, '/myofferpage'),
+            child: new Container(
+              decoration: new BoxDecoration(
+                color: Colors.green[300],
+                borderRadius: BorderRadius.all(new Radius.circular(10.0)),
+              ),
+              alignment: Alignment(0, 0),
+              child: Text(
+                'My Offers',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                ),
+              ),
+              //color: Colors.blue[400],
+            ),
+          ),
+          new InkWell(
+            onTap: () => Navigator.pushNamed(context, '/myinventorypage'),
+            child: new Container(
+              decoration: new BoxDecoration(
+                color: Colors.purple[300],
+                borderRadius: BorderRadius.all(new Radius.circular(10.0)),
+              ),
+              alignment: Alignment(0, 0),
+              child: Text(
+                'My Inventory',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                ),
+              ),
+              //color: Colors.blue[400],
+            ),
+          ),
+          new InkWell(
+            onTap: () => Navigator.pushNamed(context, '/newproductrequest'),
+            child: new Container(
+              decoration: new BoxDecoration(
+                color: Colors.indigo[300],
+                borderRadius: BorderRadius.all(new Radius.circular(10.0)),
+              ),
+              alignment: Alignment(0, 0),
+              child: Text(
+                'New Product Request',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                ),
+              ),
+              //color: Colors.blue[400],
+            ),
+          ),
+        ],
       ),
     );
   }
