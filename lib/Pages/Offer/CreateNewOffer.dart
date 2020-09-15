@@ -178,7 +178,7 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
           'area': 'Ghatkopar',
           'subArea': 'Pantnagar',
           'productId': 'product/wyrBLHYu6uhsvBKSrSra',
-          'quantity': _quantity.toString(),
+          'quantity': _quantity,
           'offerPrice': _offerPrice,
           'isActive': true,
           'status': 'Active',
