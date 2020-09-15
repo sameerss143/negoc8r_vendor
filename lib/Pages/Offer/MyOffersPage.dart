@@ -16,7 +16,27 @@ class _MyOffersPageState extends State<MyOffersPage> {
         title: Text('My Offers'),
       ),
       //drawer: AppDrawer(),
-      body: Text('List of offers'),
+      //fetch all active orders of the vendor
+      body: ListView(
+        children: <Widget>[
+          Text('List of offers'),
+          ListTile(
+            leading: Icon(Icons.ac_unit),
+            title: Text('Offer# Product Name: MRP: OfferPrice: No of Items#'),
+            onTap: () {
+              //go to offer page
+              Navigator.pushNamed(context, '/offerdetailspage');
+            },
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          //create new offer,
+          Navigator.pushNamed(context, '/createnewoffer');
+        },
+      ),
     );
   }
 }

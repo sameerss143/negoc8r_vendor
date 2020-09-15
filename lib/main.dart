@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:negoc8r_vendor/Pages/HomePage.dart';
 import 'package:negoc8r_vendor/Pages/Inventory/MyInventory.dart';
 import 'package:negoc8r_vendor/Pages/LoginPage.dart';
+import 'package:negoc8r_vendor/Pages/Offer/CreateNewOffer.dart';
+import 'package:negoc8r_vendor/Pages/Offer/OfferDetailsPage.dart';
 import 'package:negoc8r_vendor/Pages/Order/ActiveOrderPage.dart';
 import 'package:negoc8r_vendor/Pages/Order/MyOrderPage.dart';
 import 'package:negoc8r_vendor/Pages/Order/OrderDetailPage.dart';
@@ -25,6 +27,8 @@ Future<void> main() async {
         '/myhomepage': (context) => MyHomePage(),
         '/myorderpage': (context) => MyOrderPage(),
         '/myofferpage': (context) => MyOffersPage(),
+        '/offerdetailspage': (context) => OfferDetailsPage(),
+        '/createnewoffer': (context) => CreateNewOffer(),
         '/myinventorypage': (context) => MyInventoryPage(),
         '/activeorderpage': (context) => ActiveOrderPage(),
         '/orderdetailpage': (context) => OrderDetailPage(),

@@ -14,9 +14,22 @@ class _MyInventoryPageState extends State<MyInventoryPage> {
       appBar: new AppBar(
         title: Text('My Inventory'),
       ),
-      body: RaisedButton(onPressed: () {
-        Navigator.pushNamed(context, '/productcatalog');
-      }),
+      body: ListView(
+        children: <Widget>[
+          Text('List of existing items:'),
+          ListTile(
+            title: Text('Product Name'),
+            leading: Icon(Icons.ac_unit),
+            trailing: Text('Total: XX \nSold: XX'),
+          ),
+          RaisedButton(
+            child: Text('Add New Item'),
+            onPressed: () {
+              Navigator.pushNamed(context, '/productcatalog');
+            },
+          ),
+        ],
+      ),
     );
   }
 }

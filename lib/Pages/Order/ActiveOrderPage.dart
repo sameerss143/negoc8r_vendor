@@ -15,6 +15,7 @@ class _ActiveOrderPageState extends State<ActiveOrderPage> {
       ),
       body: new ListView(
         children: <Widget>[
+          //fetch all active orders of the vendor
           ListTile(
             onTap: () => Navigator.pushNamed(context, '/orderdetailpage'),
             leading: Text(
@@ -36,7 +37,6 @@ class _ActiveOrderPageState extends State<ActiveOrderPage> {
                 //fit: BoxFit.fill,
                 ),
           ),
-
           // new Icon(Icons.insert_emoticon,
           //     color: const Color(0xFF000000), size: 48.0),
           // ),
