@@ -150,6 +150,7 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
   }
 
   _getProductList() {
+    //fetch products from inventory list
     return ['Goolge Pixel 4a', 'iPhone 11 Pro', 'Samsung A21']
         .map(
           (e) => DropdownMenuItem(

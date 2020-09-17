@@ -21,7 +21,7 @@ class _MyOffersPageState extends State<MyOffersPage> {
       //fetch all active orders of the vendor
       body: StreamBuilder(
         stream:
-            FirebaseFirestore.instance.collection('VendorOffer').snapshots(),
+            FirebaseFirestore.instance.collection('vendor').doc('ZE1hNqDPjcANClKDEQ9i').collection('myOffers').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             print('Something went wrong');
@@ -39,12 +39,12 @@ class _MyOffersPageState extends State<MyOffersPage> {
               children: snapshot.data.docs.map((DocumentSnapshot vendorOffer) {
                 return ListTile(
                   leading: Icon(Icons.ac_unit),
-                  title: Text(vendorOffer.data()['productId']),
+                  title: Text(vendorOffer.data()['productName']),
                   //'Offer# Product Name: MRP: OfferPrice: No of Items#'),
                   subtitle: Text('Qty: ' +
-                      vendorOffer.data()['quantity'].toString() +
+                      vendorOffer.data()['quantityOfferred'].toString() +
                       ' Offer Price: ' +
-                      vendorOffer.data()['offerPrice'].toString()),
+                      vendorOffer.data()['offerPrice'].toString(),),
                   onTap: () {
                     //go to offer page
                     //Navigator.pushNamed(context, '/offerdetailspage', ve);

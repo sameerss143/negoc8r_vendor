@@ -13,7 +13,6 @@ import 'package:negoc8r_vendor/Pages/ProductCatalog/NewProductRequest.dart';
 import 'package:negoc8r_vendor/Pages/ProductCatalog/ProductCatalog.dart';
 import 'package:negoc8r_vendor/Pages/ProductCatalog/ProductListPage.dart';
 import 'package:negoc8r_vendor/Services/GoogleSignIn.dart';
-
 import 'Pages/Offer/MyOffersPage.dart';
 
 //change

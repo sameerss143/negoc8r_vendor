@@ -22,11 +22,17 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
             'Offer Id: ' +
                 widget.vendorOffer.id +
                 '\nProduct Id: ' +
-                widget.vendorOffer.data()['productId'] +
+                widget.vendorOffer.data()['productName'] +
                 '\nQuantity: ' +
-                widget.vendorOffer.data()['quantity'].toString() +
+                widget.vendorOffer.data()['quantityOfferred'].toString() +
                 '\nOffer Price: ' +
                 widget.vendorOffer.data()['offerPrice'].toString(),
+          ),
+          Text(
+            'Location: ' +
+                widget.vendorOffer.data()['city'] +
+                widget.vendorOffer.data()['area'] +
+                widget.vendorOffer.data()['subArea'],
           ),
         ],
       ),
