@@ -56,10 +56,13 @@ class _LoginPageState extends State<LoginPage> {
           ),
           new RaisedButton(
             key: null,
-            onPressed: buttonPressed,
+            onPressed: null,
+            // () {
+            //   Navigator.pushNamed(context, '/addnewproduct');
+            // },
             color: Colors.grey,
             child: new Text(
-              "Sign in with Twitter",
+              "AddNewProduct",
               style: new TextStyle(
                   fontSize: 14.0,
                   color: Colors.white,

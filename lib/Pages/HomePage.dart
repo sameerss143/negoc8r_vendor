@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           new InkWell(
-            onTap: () => Navigator.pushNamed(context, '/newproductrequest'),
+            onTap: () => Navigator.pushNamed(context, '/addnewproduct'),
             child: new Container(
               decoration: new BoxDecoration(
                 color: Colors.indigo[300],

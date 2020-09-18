@@ -52,7 +52,8 @@ class _NewProductRequestState extends State<NewProductRequest> {
 
             //add dynamic search based on product name
             RaisedButton(
-              onPressed: null, //submit request and return to home page
+              onPressed: null,
+              //_submitProduct(), //submit request and return to home page
               child: Text('Submit'),
             )
           ],

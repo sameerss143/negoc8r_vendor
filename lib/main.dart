@@ -9,6 +9,7 @@ import 'package:negoc8r_vendor/Pages/Offer/CreateNewOffer.dart';
 import 'package:negoc8r_vendor/Pages/Order/ActiveOrderPage.dart';
 import 'package:negoc8r_vendor/Pages/Order/MyOrderPage.dart';
 import 'package:negoc8r_vendor/Pages/Order/OrderDetailPage.dart';
+import 'package:negoc8r_vendor/Pages/Product/AddNewProduct.dart';
 import 'package:negoc8r_vendor/Pages/ProductCatalog/NewProductRequest.dart';
 import 'package:negoc8r_vendor/Pages/ProductCatalog/ProductCatalog.dart';
 import 'package:negoc8r_vendor/Pages/ProductCatalog/ProductListPage.dart';
@@ -36,6 +37,7 @@ Future<void> main() async {
         '/productlist': (context) => ProductListPage(),
         '/newproductrequest': (context) => NewProductRequest(),
         '/googlesignin': (context) => SignInDemo(),
+        '/addnewproduct': (context) => AddNewProduct(),
         //'/vendoraccount': (context) => VendorAccountHome(),
         //'/loginpage': (context) => LoginPage(),
         //'/signindemo': (context) => SignInDemo(),

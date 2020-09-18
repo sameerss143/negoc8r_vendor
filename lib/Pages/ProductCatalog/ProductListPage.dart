@@ -50,8 +50,8 @@ class _ProductListPageState extends State<ProductListPage> {
                           product.data()['BBP'].toString()),
                     ),
 
-                    title: Text(product.data()['name']),
-                    subtitle: Text(product.data()['Brand']),
+                    title: Text(product.data()['productName']),
+                    subtitle: Text(product.data()['brand']),
                     isThreeLine: true,
 
                     //Text(document.data()['BBP']),
