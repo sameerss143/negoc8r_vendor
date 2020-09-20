@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
             // },
             color: Colors.grey,
             child: new Text(
-              "AddNewProduct",
+              "Login with Twitter",
               style: new TextStyle(
                   fontSize: 14.0,
                   color: Colors.white,

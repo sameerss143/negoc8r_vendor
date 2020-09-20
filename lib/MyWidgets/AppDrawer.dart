@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:negoc8r_vendor/Pages/MyAccount/MyAccountPage.dart';
 //import 'package:negoc8r_customer/Pages/Customer/AccountHome.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -46,14 +47,14 @@ class AppDrawer extends StatelessWidget {
           ListTile(
               title: Text('My Account'),
               onTap: () {
-                //   Navigator.pop(context);
-                //   //open my account and close drawer
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => CustomerAccountHome(),
-                //     ),
-                //   );
+                Navigator.pop(context);
+                //open my account and close drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyAccountPage(),
+                  ),
+                );
               }),
           ListTile(
             title: Text('My Orders'),
@@ -83,6 +84,7 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               //open About page
               Navigator.pop(context);
+              Navigator.pushNamed(context, '/aboutpage');
             },
           )
         ],

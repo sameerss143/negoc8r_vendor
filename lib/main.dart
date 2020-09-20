@@ -1,9 +1,11 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:negoc8r_vendor/Pages/AboutPage.dart';
 import 'package:negoc8r_vendor/Pages/HomePage.dart';
 import 'package:negoc8r_vendor/Pages/Inventory/MyInventory.dart';
 import 'package:negoc8r_vendor/Pages/LoginPage.dart';
+import 'package:negoc8r_vendor/Pages/MyAccount/MyShopPage.dart';
 import 'package:negoc8r_vendor/Pages/Offer/CreateNewOffer.dart';
 //import 'package:negoc8r_vendor/Pages/Offer/OfferDetailsPage.dart';
 import 'package:negoc8r_vendor/Pages/Order/ActiveOrderPage.dart';
@@ -38,6 +40,8 @@ Future<void> main() async {
         '/newproductrequest': (context) => NewProductRequest(),
         '/googlesignin': (context) => SignInDemo(),
         '/addnewproduct': (context) => AddNewProduct(),
+        '/aboutpage': (context) => AboutPage(),
+        //'/myshoppage': (context) => MyShopPage(),
         //'/vendoraccount': (context) => VendorAccountHome(),
         //'/loginpage': (context) => LoginPage(),
         //'/signindemo': (context) => SignInDemo(),

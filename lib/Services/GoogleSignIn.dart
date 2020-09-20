@@ -8,6 +8,7 @@ import 'dart:async';
 //import 'dart:convert' show json;
 
 //import "package:http/http.dart" as http;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -49,6 +50,7 @@ class SignInDemoState extends State<SignInDemo> {
       });
       if (_currentUser != null) {
         print('user logged in successfully');
+        _updateVendorAccount();
         //_handleGetContact();
       }
     });
@@ -85,7 +87,10 @@ class SignInDemoState extends State<SignInDemo> {
     Navigator.pushNamed(context, '/myhomepage');
   }
 
-  Future<void> _handleSignOut() => _googleSignIn.disconnect();
+  Future<void> _handleSignOut() {
+    _googleSignIn.disconnect();
+    Navigator.popUntil(context, ModalRoute.withName('/'));
+  }
 
   Widget _buildBody() {
     if (_currentUser != null) {
@@ -143,6 +148,10 @@ class SignInDemoState extends State<SignInDemo> {
           constraints: const BoxConstraints.expand(),
           child: _buildBody(),
         ));
+  }
+
+  _updateVendorAccount() async {
+    //FirebaseFirestore.instance.collection('vendor').add();
   }
 }
 

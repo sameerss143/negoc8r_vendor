@@ -40,13 +40,30 @@ class _AddNewProductState extends State<AddNewProduct> {
         child: ListView(
           children: [
             //category
-            TextFormField(
-              decoration: InputDecoration(hintText: 'Category'),
-              onChanged: (value) {
-                _category = value;
-              },
-              initialValue: null,
-            ),
+            DropdownButtonFormField(
+                items: [
+                  'Mobile & Accessories',
+                  'PC & Laptop',
+                  'Electronics',
+                  'Camera & Accessories',
+                  'Home & Kitchen Appliances',
+                  'Fashion'
+                ]
+                    .map((e) =>
+                        DropdownMenuItem(child: Text(e.toString()), value: e))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _category = value;
+                  });
+                }),
+            // TextFormField(
+            //   decoration: InputDecoration(hintText: 'Category'),
+            //   onChanged: (value) {
+            //     _category = value;
+            //   },
+            //   initialValue: null,
+            // ),
             //Sub-category
             TextFormField(
               decoration: InputDecoration(hintText: 'Sub-Category'),

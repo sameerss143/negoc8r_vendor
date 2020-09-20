@@ -17,7 +17,7 @@ class ProductPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(document.data()['name']),
+        title: Text(document.data()['productName']),
       ),
       body: SingleChildScrollView(
         //controller: controller,
