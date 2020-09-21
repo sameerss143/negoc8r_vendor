@@ -40,6 +40,7 @@ class SignInDemo extends StatefulWidget {
 class SignInDemoState extends State<SignInDemo> {
   GoogleSignInAccount _currentUser;
   String _contactText;
+  User _user;
 
   @override
   void initState() {
@@ -50,6 +51,7 @@ class SignInDemoState extends State<SignInDemo> {
       });
       if (_currentUser != null) {
         print('user logged in successfully');
+        _user = FirebaseAuth.instance.currentUser;
         _updateVendorAccount();
         //_handleGetContact();
       }
@@ -152,6 +154,21 @@ class SignInDemoState extends State<SignInDemo> {
 
   _updateVendorAccount() async {
     //FirebaseFirestore.instance.collection('vendor').add();
+    print(
+      'uid: ' +
+          _user.uid.toString() +
+          'googleuser: ' +
+          _currentUser.id.toString(),
+    );
+    await FirebaseFirestore.instance.collection('vendor').doc(_user.uid).set(
+      {
+        'googleid': _currentUser.id,
+        'name': _currentUser.displayName,
+        'email': _currentUser.email,
+        'photoUrl': _currentUser.photoUrl,
+        'role': 'vendor',
+      },
+    );
   }
 }
 

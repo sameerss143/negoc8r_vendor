@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -158,9 +159,7 @@ return Container(
               children: <Widget>[
                 RaisedButton(
                   child: Text('Add to Inventory'),
-                  onPressed: () {
-                    //add this product to vendors inventory
-                  },
+                  onPressed: () => _addInventory(),
                 ),
                 // RaisedButton(
                 //   child: Text('Negotiate'),
@@ -188,5 +187,22 @@ return Container(
         ],
       ), */
     );
+  }
+
+  _addInventory() async {
+    User user = FirebaseAuth.instance.currentUser;
+
+    FirebaseFirestore.instance
+        .collection('vendor')
+        .doc(user.uid)
+        .collection('myInventory')
+        .add({
+      'productId': document.id,
+      'productName': document.data()['productName'],
+      'brand': document.data()['brand'],
+      'thumbnail': document.data()['thumbnail'],
+      'MRP': document.data()['MRP'],
+      'BBP': document.data()['BBP'],
+    });
   }
 }

@@ -22,16 +22,41 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
             'Offer Id: ' +
                 widget.vendorOffer.id +
                 '\nProduct Id: ' +
-                widget.vendorOffer.data()['productName'] +
+                widget.vendorOffer.data()['productId'] +
                 '\nQuantity: ' +
-                widget.vendorOffer.data()['quantityOfferred'].toString() +
+                widget.vendorOffer.data()['quantity'].toString() +
                 '\nOffer Price: ' +
                 widget.vendorOffer.data()['offerPrice'].toString(),
+            style: TextStyle(fontSize: 20.0),
           ),
+          //product details
+
+          // new StreamBuilder(
+          //   stream: FirebaseFirestore.instance
+          //       .collection('product')
+          //       .doc(widget.vendorOffer.data()['productId'])
+          //       .snapshots(),
+          //   builder: (context, snapshot) {
+          //     if (!snapshot.hasData) {
+          //       return new Text('Loading');
+          //     } else {
+          //       var product = snapshot.data;
+          //       return new Text(
+          //         product["productName"],
+          //       );
+          //     }
+          //   },
+
+          // Text(
+          //   'Product name: '
+          // ),
+          //),
           Text(
             'Location: ' +
                 widget.vendorOffer.data()['city'] +
+                ' > ' +
                 widget.vendorOffer.data()['area'] +
+                ' > ' +
                 widget.vendorOffer.data()['subArea'],
           ),
         ],

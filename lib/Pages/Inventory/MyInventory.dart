@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyInventoryPage extends StatefulWidget {
@@ -8,27 +10,66 @@ class MyInventoryPage extends StatefulWidget {
 }
 
 class _MyInventoryPageState extends State<MyInventoryPage> {
+  User _user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
         title: Text('My Inventory'),
       ),
-      body: ListView(
-        children: <Widget>[
-          Text('List of existing items:'),
-          ListTile(
-            title: Text('Product Name'),
-            leading: Icon(Icons.ac_unit),
-            trailing: Text('Total: XX \nSold: XX'),
-          ),
-          RaisedButton(
-            child: Text('Add New Item'),
-            onPressed: () {
-              Navigator.pushNamed(context, '/productcatalog');
-            },
-          ),
-        ],
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('vendor')
+            .doc(_user.uid)
+            .collection('myInventory')
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            print('Something went wrong');
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          }
+          if (!snapshot.hasData) {
+            return Center(
+              //child: Text('data not fetched yet'),
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return ListView(
+              children: snapshot.data.docs.map((DocumentSnapshot inventory) {
+                return ListTile(
+                  leading: Image.network(inventory.data()['thumbnail']),
+                  title: Text(inventory.data()['productName']),
+                  //'Offer# Product Name: MRP: OfferPrice: No of Items#'),
+                  subtitle: Text(inventory.data()['brand']),
+                  trailing: Text('MRP: ' +
+                      inventory.data()['MRP'].toString() +
+                      '\nBBP: ' +
+                      inventory.data()['BBP'].toString()),
+                  // subtitle: Text(
+                  //   'Qty: ' +
+                  //       inventory.data()['quantityOfferred'].toString() +
+                  //       ' Offer Price: ' +
+                  //       inventory.data()['offerPrice'].toString(),
+                  // ),
+                  // onTap: () {
+                  //   //go to offer page
+                  //   //Navigator.pushNamed(context, '/offerdetailspage', ve);
+
+                  //   Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) => OfferDetailsPage(
+                  //           vendorOffer: vendorOffer,
+                  //         ),
+                  //       ));
+                  // },
+                );
+              }).toList(),
+            );
+          }
+        },
       ),
     );
   }

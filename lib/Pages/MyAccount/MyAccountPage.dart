@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -28,35 +26,36 @@ class _MyAccountPageState extends State<MyAccountPage> {
         .doc('shop01')
         .get();
 
-    //String _shopName = _shopDetails.data()['shopName'];
+    //String _shopName = _shopDetails.;
 
     return Scaffold(
-        appBar: new AppBar(
-          title: Text('My Account'),
-        ),
-        body: ListView(
-          children: <Widget>[
-            Image.network(_imgURL),
-            Text('Vendor Id: ' + _user.uid),
-            Text('Name: $_username'),
-            Text('Email: $_email'),
-            Text('Phone: $_phoneNumber'),
-            SizedBox(
-              width: 50,
-              //height: 100,
-              child: RaisedButton(
-                child: Text('My Shop Details'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyShopPage(),
-                    ),
-                  );
-                },
-              ),
+      appBar: new AppBar(
+        title: Text('My Account'),
+      ),
+      body: ListView(
+        children: <Widget>[
+          Image.network(_imgURL),
+          Text('Vendor Id: ' + _user.uid),
+          Text('Name: $_username'),
+          Text('Email: $_email'),
+          Text('Phone: $_phoneNumber'),
+          SizedBox(
+            width: 50,
+            //height: 100,
+            child: RaisedButton(
+              child: Text('My Shop Details'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyShopPage(),
+                  ),
+                );
+              },
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

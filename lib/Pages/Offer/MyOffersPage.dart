@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:negoc8r_vendor/Pages/Offer/OfferDetailsPage.dart';
@@ -11,8 +12,19 @@ class MyOffersPage extends StatefulWidget {
 }
 
 class _MyOffersPageState extends State<MyOffersPage> {
+  //TextEditingController _searchController;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _searchController.addListener(() {
+  //     print('search: $_searchController.text');
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
+    User _user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: new AppBar(
         title: Text('My Offers'),
@@ -20,8 +32,11 @@ class _MyOffersPageState extends State<MyOffersPage> {
       //drawer: AppDrawer(),
       //fetch all active orders of the vendor
       body: StreamBuilder(
-        stream:
-            FirebaseFirestore.instance.collection('vendor').doc('ZE1hNqDPjcANClKDEQ9i').collection('myOffers').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('vendor')
+            .doc(_user.uid)
+            .collection('myOffer')
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             print('Something went wrong');
@@ -39,12 +54,14 @@ class _MyOffersPageState extends State<MyOffersPage> {
               children: snapshot.data.docs.map((DocumentSnapshot vendorOffer) {
                 return ListTile(
                   leading: Icon(Icons.ac_unit),
-                  title: Text(vendorOffer.data()['productName']),
+                  title: Text(vendorOffer.data()['productId']),
                   //'Offer# Product Name: MRP: OfferPrice: No of Items#'),
-                  subtitle: Text('Qty: ' +
-                      vendorOffer.data()['quantityOfferred'].toString() +
-                      ' Offer Price: ' +
-                      vendorOffer.data()['offerPrice'].toString(),),
+                  subtitle: Text(
+                    'Qty: ' +
+                        vendorOffer.data()['quantity'].toString() +
+                        ' Offer Price: ' +
+                        vendorOffer.data()['offerPrice'].toString(),
+                  ),
                   onTap: () {
                     //go to offer page
                     //Navigator.pushNamed(context, '/offerdetailspage', ve);
