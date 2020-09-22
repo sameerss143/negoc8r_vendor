@@ -20,7 +20,7 @@ class _ProductListPageState extends State<ProductListPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product List'),
+        title: Text('${widget.productCategory}'),
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
