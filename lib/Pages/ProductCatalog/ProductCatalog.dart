@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:negoc8r_vendor/Pages/ProductCatalog/ProductListPage.dart';
 //import 'package:negoc8r_customer/Pages/ProductList.dart';
@@ -110,6 +112,7 @@ class ProductCatalog extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
               color: Colors.blue[200],
             ),
+            //child: Image.network('src'),
             child: IconButton(
                 icon: Icon(
                   Icons.add_shopping_cart,

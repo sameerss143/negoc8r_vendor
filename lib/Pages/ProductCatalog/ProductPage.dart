@@ -98,7 +98,7 @@ return Container(
             Container(
               child: Text(
                 document.data()['shortDescription'],
-                textAlign: TextAlign.justify,
+                textAlign: TextAlign.left,
               ),
               padding: EdgeInsets.all(10.0),
             ),
@@ -124,7 +124,13 @@ return Container(
             SizedBox(
               height: 10.0,
             ),
-
+            Container(
+              child: Text(
+                document.data()['longDescription'],
+                textAlign: TextAlign.left,
+              ),
+              padding: EdgeInsets.all(10.0),
+            ),
             //location of the customer
 
             //Offer prices by vendors

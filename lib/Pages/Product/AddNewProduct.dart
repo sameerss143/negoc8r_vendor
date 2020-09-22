@@ -209,7 +209,7 @@ class _AddNewProductState extends State<AddNewProduct> {
   _submitProduct() async {
     try {
       _images = [_img1, _img2, _img3, _img4];
-      await FirebaseFirestore.instance.collection('product').add(
+      await FirebaseFirestore.instance.collection('productRequest').add(
         {
           'productName': _name,
           'category': _category,

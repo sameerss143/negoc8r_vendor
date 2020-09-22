@@ -58,6 +58,7 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
                 widget.vendorOffer.data()['area'] +
                 '\nSub Area: ' +
                 widget.vendorOffer.data()['subArea'],
+            style: TextStyle(fontSize: 20.0),
           ),
         ],
       ),
