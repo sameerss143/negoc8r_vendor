@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:negoc8r_vendor/Pages/ProductCatalog/ProductListPage.dart';
 //import 'package:negoc8r_customer/Pages/ProductList.dart';
 
 class ProductCatalog extends StatelessWidget {
@@ -31,7 +32,7 @@ class ProductCatalog extends StatelessWidget {
                 size: 100.0,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/productlist');
+                _openProductList(context, 'Mobile & Accessories');
               },
               //_openProductList(context, 'mobile'),
             ),
@@ -70,7 +71,7 @@ class ProductCatalog extends StatelessWidget {
               ),
               //onPressed: _openProductList(context, 'laptop'),
               onPressed: () {
-                Navigator.pushNamed(context, '/productlist');
+                _openProductList(context, 'PC & Laptop');
               },
             ),
           ),
@@ -85,7 +86,9 @@ class ProductCatalog extends StatelessWidget {
                   color: Colors.black,
                   size: 100.0,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  _openProductList(context, 'Electronics');
+                }),
           ),
           Container(
             decoration: BoxDecoration(
@@ -98,7 +101,9 @@ class ProductCatalog extends StatelessWidget {
                   color: Colors.black,
                   size: 100.0,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  _openProductList(context, 'Camera & Accessories');
+                }),
           ),
           Container(
             decoration: BoxDecoration(
@@ -111,7 +116,9 @@ class ProductCatalog extends StatelessWidget {
                   color: Colors.black,
                   size: 100.0,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  _openProductList(context, 'Home & Kitchen Appliances');
+                }),
           ),
           Container(
             decoration: BoxDecoration(
@@ -124,30 +131,27 @@ class ProductCatalog extends StatelessWidget {
                   color: Colors.black,
                   size: 100.0,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  _openProductList(context, 'Fashion');
+                }),
           ),
         ],
       )),
     );
   }
 
-/*   _openProductList(BuildContext context, String productType) {
-    if (productType == 'mobile') {
-      try {
-        Navigator.pushNamed(context, '/productlist');
-      } catch (e) {
-        print(e.toString());
-      }
-      {}
-    } else {
-      if (productType == 'laptop') {
-        try {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ProductList()));
-        } catch (e) {
-          print(e.toString());
-        }
-      }
+  _openProductList(BuildContext context, String productType) {
+    try {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ProductListPage(
+            productCategory: productType,
+          ),
+        ),
+      );
+    } catch (e) {
+      print(e.toString());
     }
-  } */
+  }
 }

@@ -71,6 +71,13 @@ class _MyInventoryPageState extends State<MyInventoryPage> {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          //create new offer,
+          Navigator.pushNamed(context, '/productcatalog');
+        },
+      ),
     );
   }
 }

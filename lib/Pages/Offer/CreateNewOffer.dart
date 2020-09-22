@@ -91,8 +91,6 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
                     DocumentSnapshot product = snapshot.data.docs[i];
                     String productName = product.data()['productName'];
                     String productId = product.data()['productId'];
-                    String mrp = product.data()['MRP'].toString();
-                    String bbp = product.data()['BBP'].toString();
                     //print('# $i : $productId : $productName');
                     productList.add(
                       DropdownMenuItem(

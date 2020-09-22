@@ -52,11 +52,11 @@ class _OfferDetailsPageState extends State<OfferDetailsPage> {
           // ),
           //),
           Text(
-            'Location: ' +
+            'Location: \nCity:' +
                 widget.vendorOffer.data()['city'] +
-                ' > ' +
+                '\nArea: ' +
                 widget.vendorOffer.data()['area'] +
-                ' > ' +
+                '\nSub Area: ' +
                 widget.vendorOffer.data()['subArea'],
           ),
         ],
