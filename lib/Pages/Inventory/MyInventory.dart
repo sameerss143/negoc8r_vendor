@@ -71,8 +71,8 @@ class _MyInventoryPageState extends State<MyInventoryPage> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+      floatingActionButton: RaisedButton(
+        child: Text('Add new item'),
         onPressed: () {
           //create new offer,
           Navigator.pushNamed(context, '/productcatalog');

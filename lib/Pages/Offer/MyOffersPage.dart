@@ -81,8 +81,9 @@ class _MyOffersPageState extends State<MyOffersPage> {
         },
       ),
 
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+      floatingActionButton: new RaisedButton(
+        //shape: ShapeBorder(),
+        child: Text('Create New Offer'),
         onPressed: () {
           //create new offer,
           Navigator.pushNamed(context, '/createnewoffer');
