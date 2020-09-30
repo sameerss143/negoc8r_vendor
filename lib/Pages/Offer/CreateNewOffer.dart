@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:negoc8r_vendor/Classes/ProductObj.dart';
 //import 'package:negoc8r_vendor/Classes/VendorAccount.dart';
 
 class CreateNewOffer extends StatefulWidget {
@@ -11,19 +12,47 @@ class CreateNewOffer extends StatefulWidget {
 }
 
 class _CreateNewOfferState extends State<CreateNewOffer> {
-  // String _category;
-  // String _subCategory;
-  String _shopName;
-  String _city;
-  String _area;
-  String _subArea;
-  String _productName;
-  String _productId;
-  //ProductObj _productObj;
+  String _category;
+  String _subCategory;
+  // String _shopName;
+  // String _city;
+  // String _area;
+  // String _subArea;
+  // String _productName;
+  // String _productId;
+  String _selectedProduct; // = new ProductObj();
+  List<DropdownMenuItem<ProductObj>> _productList = [];
   int _quantity = 0;
   double _offerPrice = 0.0;
   final _formKey = GlobalKey<FormState>();
   User _user = FirebaseAuth.instance.currentUser;
+
+  @override
+  void initState() {
+    //Fetch the inventory list
+    // Stream<QuerySnapshot> snapshot = FirebaseFirestore.instance
+    //     .collection('vendor')
+    //     .doc(_user.uid)
+    //     .collection('myInventory')
+    //     .snapshots();
+
+    //int l = snapshot.length;
+    //for (var i = 0; i < snapshot.length; i++) {}
+    //DocumentSnapshot ds = snapshot[0];
+
+    // snapshot.data.docs
+    //     .map<ProductObj>((ProductObj inventory) => {
+    //           productList.add(
+    //             DropdownMenuItem<ProductObj>(
+    //               child: new Text(inventory.productName),
+    //               value: inventory,
+    //             ),
+    //           );
+    //         })
+    //     .toList();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,36 +74,36 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
           //fields for product, location(fixed for each vendor), quantity and offer price
           children: <Widget>[
             //category
-            // DropdownButtonFormField(
-            //   items: _getCategoryList(),
-            //   // onChanged: (newValue) {
-            //   //   _category = newValue.toString();
-            //   //   setState(newValue);
-            //   onChanged: (newValue) {
-            //     setState(
-            //       () {
-            //         //if (newValue != null) {
-            //         _category = newValue;
-            //         //}
-            //       },
-            //     );
-            //   },
-            //   hint: Text('Select Category'),
-            // ),
-            // //subcategory
-            // DropdownButtonFormField(
-            //   items: _getSubCategoryList(),
-            //   onChanged: (newValue) {
-            //     setState(
-            //       () {
-            //         _subCategory = newValue;
-            //       },
-            //     );
-            //   },
-            //   hint: Text('Select Sub-category'),
-            // ),
+            DropdownButtonFormField(
+              items: _getCategoryList(),
+              // onChanged: (newValue) {
+              //   _category = newValue.toString();
+              //   setState(newValue);
+              onChanged: (newValue) {
+                setState(
+                  () {
+                    //if (newValue != null) {
+                    _category = newValue;
+                    //}
+                  },
+                );
+              },
+              hint: Text('Select Category'),
+            ),
+            //subcategory
+            DropdownButtonFormField(
+              items: _getSubCategoryList(),
+              onChanged: (newValue) {
+                setState(
+                  () {
+                    _subCategory = newValue;
+                  },
+                );
+              },
+              hint: Text('Select Sub-category'),
+            ),
             //get product
-            new StreamBuilder<QuerySnapshot>(
+            StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection('vendor')
                   .doc(_user.uid)
@@ -87,50 +116,46 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
                 } else {
                   //create list
                   List<DropdownMenuItem> productList = [];
+
                   for (int i = 0; i < snapshot.data.docs.length; i++) {
                     DocumentSnapshot product = snapshot.data.docs[i];
                     String productName = product.data()['productName'];
                     String productId = product.data()['productId'];
-                    //print('# $i : $productId : $productName');
+
                     productList.add(
                       DropdownMenuItem(
-                        child: Text('$productName'),
+                        child: new Text('$productName'),
                         value: productId,
-                        // ProductObj(
-                        //   productId: productId,
-                        //   productName: productName,
-                        // ),
+                        //productName: productName,
                       ),
                     );
                   }
+                  //print('List# ${i.toString()} > $productId : $productName');
+
                   //assign list to dropdown
-                  return DropdownButtonFormField(
-                    items: productList,
-                    value: _productId,
-                    onChanged: (newValue) {
-                      setState(
-                        () {
-                          _productId = newValue;
-                        },
-                      );
-                    },
+                  return new Container(
+                    width: MediaQuery.of(context).size.width * .90,
+                    child: DropdownButtonFormField(
+                      hint: Text('Select Product'),
+                      items: productList,
+                      value: _selectedProduct,
+                      onChanged: (newVal) {
+                        //
+                        //print('${newVal.productId} : ${newVal.productName}');
+                        setState(
+                          () {
+                            _selectedProduct = newVal;
+                            // print(
+                            //     'Selected> ${_selectedProduct.productId} : ${_selectedProduct.productName}');
+                          },
+                        );
+                      },
+                    ),
                   );
                 }
               },
             ),
 
-            //
-            // DropdownButtonFormField(
-            //   items: null,
-            //   onChanged: (newValue) {
-            //     setState(
-            //       () {
-            //         _productId = newValue;
-            //       },
-            //     );
-            //   },
-            //   hint: Text('Select Product'),
-            // ),
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Quantity',
@@ -182,32 +207,32 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
     );
   }
 
-  // _getCategoryList() {
-  //   //fetch products from inventory list
-  //   return ['Mobile', 'Computer', 'Electronics', 'Fashion', 'HomeAppliances']
-  //       .map(
-  //         (e) => DropdownMenuItem(
-  //           child: Text(
-  //             e.toString(),
-  //           ),
-  //           value: e,
-  //         ),
-  //       )
-  //       .toList();
-  // }
+  _getCategoryList() {
+    //fetch products from inventory list
+    return ['Mobile', 'Computer', 'Electronics', 'Fashion', 'HomeAppliances']
+        .map(
+          (e) => DropdownMenuItem(
+            child: Text(
+              e.toString(),
+            ),
+            value: e,
+          ),
+        )
+        .toList();
+  }
 
-  // _getSubCategoryList() {
-  //   return ['Android', 'iPhone', 'Accessories']
-  //       .map(
-  //         (e) => DropdownMenuItem(
-  //           child: Text(
-  //             e.toString(),
-  //           ),
-  //           value: e,
-  //         ),
-  //       )
-  //       .toList();
-  // }
+  _getSubCategoryList() {
+    return ['Android', 'iPhone', 'Accessories']
+        .map(
+          (e) => DropdownMenuItem(
+            child: Text(
+              e.toString(),
+            ),
+            value: e,
+          ),
+        )
+        .toList();
+  }
 
   // Future<List<DropdownMenuItem>> _getProductList() async {
   //   //fetch products from inventory list
@@ -253,8 +278,8 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
           'city': 'Mumbai',
           'area': 'Ghatkopar',
           'subArea': 'Pantnagar',
-          'productId': _productId,
-          'productName': _productName,
+          'productId': _selectedProduct,
+          //'productName': _selectedProduct.productName,
           'quantity': _quantity,
           'offerPrice': _offerPrice,
           'isActive': true,
@@ -272,7 +297,8 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
           'city': 'Mumbai',
           'area': 'Ghatkopar',
           'subArea': 'Pantnagar',
-          'productId': _productId,
+          'productId': _selectedProduct,
+          //'productName': _selectedProduct.productName,
           'quantity': _quantity,
           'offerPrice': _offerPrice,
           'isActive': true,
@@ -288,10 +314,3 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
     }
   }
 }
-
-// class ProductObj {
-//   String productId;
-//   String productName;
-
-//   ProductObj({this.productId, this.productName});
-// }

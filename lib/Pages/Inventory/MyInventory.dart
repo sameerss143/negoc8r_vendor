@@ -38,8 +38,16 @@ class _MyInventoryPageState extends State<MyInventoryPage> {
           } else {
             return ListView(
               children: snapshot.data.docs.map((DocumentSnapshot inventory) {
+                String _thumbnail = inventory.data()['thumbnail'];
+                bool _isThumbnailLoaded = _thumbnail.isNotEmpty;
+
                 return ListTile(
-                  leading: Image.network(inventory.data()['thumbnail']),
+                  leading: Container(
+                    child: _isThumbnailLoaded
+                        ? Image.network(inventory.data()['thumbnail'])
+                        : Icon(Icons.network_check_outlined),
+                    width: 50.0,
+                  ),
                   title: Text(inventory.data()['productName']),
                   //'Offer# Product Name: MRP: OfferPrice: No of Items#'),
                   subtitle: Text(inventory.data()['brand']),

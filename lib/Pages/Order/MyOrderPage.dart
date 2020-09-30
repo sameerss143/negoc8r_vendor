@@ -48,7 +48,7 @@ class _MyOrderPageState extends State<MyOrderPage> {
                     'Qty: ' +
                         vendorOrder.data()['quantity'].toString() +
                         ' Offer Price: ' +
-                        vendorOrder.data()['offerPrice'].toString(),
+                        vendorOrder.data()['orderPrice'].toString(),
                   ),
                   onTap: () {
                     //go to offer page
