@@ -15,9 +15,9 @@ class _CreateNewOfferState extends State<CreateNewOffer> {
   String _category;
   String _subCategory;
   // String _shopName;
-  // String _city;
-  // String _area;
-  // String _subArea;
+  String _city;
+  String _area;
+  String _subArea;
   // String _productName;
   // String _productId;
   String _selectedProduct; // = new ProductObj();

@@ -41,6 +41,7 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
           new Column(
             children: [
               Container(
+                alignment: Alignment.topRight,
                 width: 100,
                 height: 100,
                 child: Image.network(_thumbnail),

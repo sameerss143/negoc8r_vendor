@@ -89,7 +89,7 @@ class SignInDemoState extends State<SignInDemo> {
     Navigator.pushNamed(context, '/myhomepage');
   }
 
-  Future<void> _handleSignOut() {
+  Future<void> _handleSignOut() async {
     _googleSignIn.disconnect();
     Navigator.popUntil(context, ModalRoute.withName('/'));
   }
